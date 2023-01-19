@@ -6,6 +6,13 @@
 # -- Piece
 # -- Cross (inherit from Piece)
 # -- Circle (inherit from Piece)
+# -- Game (manages Board)
+
+class Board
+    def initialize
+        @@board_space = Array.new(3, Array.new(3, " "))
+    end
+end
 
 # - instance variables:
 # -- Player:
