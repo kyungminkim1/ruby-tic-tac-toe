@@ -4,15 +4,7 @@
 # -- Player
 # -- Board
 # -- Piece
-# -- Cross (inherit from Piece)
-# -- Circle (inherit from Piece)
 # -- Game (manages Board)
-
-class Board
-    def initialize
-        @@board_space = Array.new(3, Array.new(3, " "))
-    end
-end
 
 # - instance variables:
 # -- Player:
@@ -34,3 +26,15 @@ end
 # -- check_diagonals
 # -- print_board
 # -- get_player_input
+
+class Board
+    def initialize
+        @@board_space = Array.new(3, Array.new(3, " "))
+    end
+end
+
+class Player
+    def initialize(piece_symbol)
+        @piece = Piece.new(piece_symbol)
+    end
+end
