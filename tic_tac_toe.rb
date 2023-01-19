@@ -44,3 +44,11 @@ class Player
     @piece = Piece.new(piece_symbol)
   end
 end
+
+class Game
+  def initialize
+    @board = Board.new
+    @player_one = Player.new('x')
+    @player_two = Player.new('o')
+  end
+end
