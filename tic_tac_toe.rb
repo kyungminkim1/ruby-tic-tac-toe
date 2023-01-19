@@ -31,6 +31,10 @@ class Board
   def initialize
     @board_space = Array.new(3, Array.new(3, ' '))
   end
+
+  def print_board
+    @board_space.map { |row| puts row.to_s }
+  end
 end
 
 class Piece
@@ -52,3 +56,6 @@ class Game
     @player_two = Player.new('o')
   end
 end
+
+b = Board.new
+b.print_board
