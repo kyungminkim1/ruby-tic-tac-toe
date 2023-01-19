@@ -4,7 +4,7 @@
 # -- Player
 # -- Board
 # -- Piece
-# -- Game (manages Board)
+# -- Game (manages game loop)
 
 # - instance variables:
 # -- Player:
@@ -30,6 +30,12 @@
 class Board
     def initialize
         @@board_space = Array.new(3, Array.new(3, " "))
+    end
+end
+
+class Piece
+    def initialize(symbol)
+        @symbol = symbol
     end
 end
 
