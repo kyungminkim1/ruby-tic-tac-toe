@@ -39,11 +39,21 @@ class Board
   end
 
   def add_piece(piece, row_index, column_index)
-    @board_space[row_index][column_index] = piece.symbol
+    if space_available?(row_index, column_index)
+      @board_space[row_index][column_index] = piece.symbol
+    else
+      puts 'That space has already been filled!'
+    end
   end
 
   def check_rows
     
+  end
+
+  private
+
+  def space_available?(row_index, column_index)
+    @board_space[row_index][column_index] == ' '
   end
 end
 
@@ -79,3 +89,4 @@ b.print_board
 player_one = Player.new('x')
 b.add_piece(player_one.piece, 0, 0)
 b.print_board
+b.add_piece(player_one.piece, 0, 0)
