@@ -28,12 +28,18 @@
 # -- get_player_input
 
 class Board
+  attr_accessor :board_space
+
   def initialize
     @board_space = Array.new(3, Array.new(3, ' '))
   end
 
   def print_board
     @board_space.map { |row| puts row.to_s }
+  end
+
+  def check_rows
+    
   end
 end
 
@@ -47,6 +53,10 @@ class Player
   def initialize(piece_symbol)
     @piece = Piece.new(piece_symbol)
   end
+
+  def place_piece(board, row_index, column_index)
+    board[row_index][column_index] = @piece
+  end
 end
 
 class Game
@@ -55,7 +65,12 @@ class Game
     @player_one = Player.new('x')
     @player_two = Player.new('o')
   end
+
+
 end
 
 b = Board.new
+b.print_board
+player_one = Player.new('x')
+player_one.place_piece(b.board_space, 0, 0)
 b.print_board
