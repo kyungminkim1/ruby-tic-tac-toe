@@ -38,6 +38,10 @@ class Board
     @board_space.map { |row| puts row.to_s }
   end
 
+  def add_piece(player, row_index, column_index)
+    @board_space[row_index][column_index] = player
+  end
+
   def check_rows
     
   end
@@ -54,9 +58,6 @@ class Player
     @piece = Piece.new(piece_symbol)
   end
 
-  def place_piece(board, row_index, column_index)
-    board[row_index][column_index] = @piece
-  end
 end
 
 class Game
@@ -72,5 +73,5 @@ end
 b = Board.new
 b.print_board
 player_one = Player.new('x')
-player_one.place_piece(b.board_space, 0, 0)
+b.add_piece(player_one, 0, 0)
 b.print_board
