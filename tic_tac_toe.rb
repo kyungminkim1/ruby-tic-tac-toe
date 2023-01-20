@@ -31,7 +31,7 @@ class Board
   attr_accessor :board_space
 
   def initialize
-    @board_space = Array.new(3, Array.new(3, ' '))
+    @board_space = Array.new(3) { Array.new(3, ' ') }
   end
 
   def print_board
