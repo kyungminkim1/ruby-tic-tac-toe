@@ -39,7 +39,7 @@ class Board
   end
 
   def add_piece(piece, row_index, column_index)
-    @board_space[row_index][column_index] = piece
+    @board_space[row_index][column_index] = piece.symbol
   end
 
   def check_rows
@@ -48,6 +48,8 @@ class Board
 end
 
 class Piece
+  attr_reader :symbol
+
   def initialize(symbol)
     @symbol = symbol
   end
