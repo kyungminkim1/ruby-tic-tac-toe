@@ -95,6 +95,18 @@ class Board
     false
   end
 
+  def matching_diagonal?(player)
+    # check top left-to-bottom right diagonal
+    if @board_space[0][0] == player.symbol && @board_space[1][1] == player.symbol && @board_space[2][2] == player.symbol
+      return true
+    # check top right-to-bottom left diagonal
+    elsif @board_space[0][2] == player.symbol && @board_space[1][1] == player.symbol && @board_space[2][0] == player.symbol
+      return true
+    end
+    
+    false
+  end
+
   def announce_victory
 
   end
