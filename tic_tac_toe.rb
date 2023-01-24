@@ -46,8 +46,17 @@ class Board
     end
   end
 
-  def check_rows
-    
+  # call after player finishes their move
+  def check_board
+    if matching_row? || matching_column? || matching_diagonal?
+      # announce victory for player 1/2
+      announce_victory
+    elsif board_full?
+      # end game on a draw
+      announce_draw
+    else
+      # continue game
+    end
   end
 
   private
@@ -55,6 +64,15 @@ class Board
   def space_available?(row_index, column_index)
     @board_space[row_index][column_index] == ' '
   end
+
+  def announce_victory
+
+  end
+
+  def announce_draw
+    
+  end
+
 end
 
 class Piece
