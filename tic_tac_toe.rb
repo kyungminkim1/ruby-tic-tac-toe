@@ -49,7 +49,7 @@ class Board
   # call after player finishes their move
   def check_board(player)
     if matching_row?(player.piece) || matching_column?(player.piece) || matching_diagonal?(player.piece)
-      # announce victory for player 1/2
+      # announce victory for player 1 or 2
       announce_victory(player)
     elsif board_full?
       # end game on a draw
@@ -116,11 +116,12 @@ class Board
   end
 
   def board_full?
-
+    available_space = @board_space.flatten.map { |space| space == ' ' }
+    available_space.all? { |space| space == false }
   end
 
   def announce_draw
-
+    puts "There's no more space! It's a draw!"
   end
   
 
@@ -157,9 +158,17 @@ end
 b = Board.new
 b.print_board
 player_one = Player.new('Player 1', 'x')
+player_two = Player.new('Player 2', 'o')
 b.add_piece(player_one.piece, 0, 0)
 b.print_board
 b.add_piece(player_one.piece, 0, 0)
-b.add_piece(player_one.piece, 1, 0)
+b.add_piece(player_two.piece, 1, 0)
 b.add_piece(player_one.piece, 2, 0)
+b.add_piece(player_one.piece, 0, 1)
+b.add_piece(player_two.piece, 1, 1)
+b.add_piece(player_one.piece, 2, 1)
+b.add_piece(player_two.piece, 0, 2)
+b.add_piece(player_one.piece, 1, 2)
+b.add_piece(player_two.piece, 2, 2)
+b.print_board
 b.check_board(player_one)
