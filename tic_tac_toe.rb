@@ -47,8 +47,8 @@ class Board
   end
 
   # call after player finishes their move
-  def check_board
-    if matching_row? || matching_column? || matching_diagonal?
+  def check_board(player)
+    if matching_row?(player) || matching_column?(player) || matching_diagonal?(player)
       # announce victory for player 1/2
       announce_victory
     elsif board_full?
@@ -65,12 +65,27 @@ class Board
     @board_space[row_index][column_index] == ' '
   end
 
+  def matching_row?(player)
+    # check top row
+    if @board_space[0][0] == player.symbol && @board_space[0][1] == player.symbol && @board_space[0][2] == player.symbol
+      return true
+    # check middle row
+    elsif @board_space[1][0] == player.symbol && @board_space[1][1] == player.symbol && @board_space[1][2] == player.symbol
+      return true
+    # check bottom row
+    elsif @board_space[2][0] == player.symbol && @board_space[2][1] == player.symbol && @board_space[2][2] == player.symbol
+      return true
+    end
+
+    false
+  end
+
   def announce_victory
 
   end
 
   def announce_draw
-    
+
   end
 
 end
