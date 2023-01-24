@@ -116,8 +116,8 @@ class Board
   end
 
   def board_full?
-    available_space = @board_space.flatten.map { |space| space == ' ' }
-    available_space.all? { |space| space == false }
+    available_space = @board_space.flatten.select { |space| space == ' ' }
+    available_space == []
   end
 
   def announce_draw
