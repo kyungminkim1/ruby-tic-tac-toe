@@ -50,7 +50,7 @@ class Board
   def check_board(player)
     if matching_row?(player) || matching_column?(player) || matching_diagonal?(player)
       # announce victory for player 1/2
-      announce_victory
+      announce_victory(player)
     elsif board_full?
       # end game on a draw
       announce_draw
@@ -107,8 +107,11 @@ class Board
     false
   end
 
-  def announce_victory
-
+  def announce_victory(player)
+    puts "#{player.name} wins!"
+    puts `"""""""""""""""`
+    puts print_board
+    puts `"""""""""""""""` 
   end
 
   def announce_draw
@@ -126,9 +129,10 @@ class Piece
 end
 
 class Player
-  attr_reader :piece
+  attr_reader :name, :piece
 
-  def initialize(piece_symbol)
+  def initialize(name, piece_symbol)
+    @name = name
     @piece = Piece.new(piece_symbol)
   end
 
