@@ -80,6 +80,21 @@ class Board
     false
   end
 
+  def matching_column?(player)
+    # check left column
+    if @board_space[0][0] == player.symbol && @board_space[1][0] == player.symbol && @board_space[2][0] == player.symbol
+      return true
+    # check middle column
+    elsif @board_space[0][1] == player.symbol && @board_space[1][1] == player.symbol && @board_space[2][1] == player.symbol
+      return true
+    # check right column
+    elsif @board_space[0][2] == player.symbol && @board_space[1][2] == player.symbol && @board_space[2][2] == player.symbol
+      return true
+    end
+
+    false
+  end
+
   def announce_victory
 
   end
