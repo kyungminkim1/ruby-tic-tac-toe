@@ -108,10 +108,11 @@ class Board
   end
 
   def announce_victory(player)
-    puts "#{player.name} wins!"
-    puts '"""""""""""""""'
-    puts print_board
-    puts '"""""""""""""""'
+    puts '""""""""""""""""""""""'
+    puts "\"\"\"\"#{player.name} wins!\"\"\"\""
+    puts '""""""""""""""""""""""'
+    print_board
+
   end
 
   def board_full?
