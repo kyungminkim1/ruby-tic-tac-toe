@@ -58,7 +58,7 @@ class Board
     available_space = @board_space.flatten.select { |space| space == ' ' }
     available_space == []
   end
-  
+
   private
 
   def space_available?(row_index, column_index)
@@ -145,8 +145,8 @@ end
 class Game
   attr_reader :board, :game_ended
 
-  def initialize
-    @board = Board.new
+  def initialize(board)
+    @board = board
     @game_ended = false
   end
 
@@ -179,7 +179,7 @@ end
 
 player_one = Player.new('Player 1', 'x')
 player_two = Player.new('Player 2', 'o')
-game = Game.new
+game = Game.new(Board.new)
 is_player_ones_turn = true
 
 until game.game_ended
