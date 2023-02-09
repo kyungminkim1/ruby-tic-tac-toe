@@ -145,10 +145,13 @@ class Player
 end
 
 class Game
+  attr_reader :game_ended
+  
   def initialize
     @board = Board.new
     @player_one = Player.new('x')
     @player_two = Player.new('o')
+    @game_ended = false
   end
 
   def check_board(player)
