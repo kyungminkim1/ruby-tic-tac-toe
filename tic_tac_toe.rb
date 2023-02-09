@@ -44,8 +44,6 @@ class Board
     end
   end
 
-  protected
-
   def print_board
     @board_space.map { |row| puts row.to_s }
   end
@@ -145,12 +143,10 @@ class Player
 end
 
 class Game
-  attr_reader :game_ended
-  
+  attr_reader :board, :game_ended
+
   def initialize
     @board = Board.new
-    @player_one = Player.new('x')
-    @player_two = Player.new('o')
     @game_ended = false
   end
 
@@ -158,6 +154,7 @@ class Game
     if @board.player_won?(player)
       # announce victory for player 1 or 2
       announce_victory(player)
+      @game_ended = true
     elsif @board.board_full?
       # end game on a draw
       announce_draw
@@ -180,19 +177,21 @@ class Game
   end
 end
 
-b = Board.new
-b.print_board
 player_one = Player.new('Player 1', 'x')
 player_two = Player.new('Player 2', 'o')
-b.add_piece(player_one.piece, 0, 0)
-b.print_board
-b.add_piece(player_one.piece, 0, 0) # try to add piece to filled spot
-b.add_piece(player_two.piece, 1, 0)
-b.add_piece(player_one.piece, 2, 0)
-b.add_piece(player_one.piece, 0, 1)
-b.add_piece(player_two.piece, 1, 1)
-b.add_piece(player_one.piece, 2, 1)
-b.add_piece(player_two.piece, 0, 2)
-b.add_piece(player_one.piece, 1, 2)
-b.add_piece(player_two.piece, 2, 2)
-b.print_board
+game = Game.new
+is_player_ones_turn = true
+
+until game.game_ended
+  current_player = is_player_ones_turn ? player_one : player_two
+  is_player_ones_turn = !is_player_ones_turn
+  puts "It's #{current_player.name}'s turn!"
+  puts 'Which row (from 0 to 2)?'
+  puts '0 = top row, 2 = bottom row'
+  row_input = gets.chomp
+  puts 'Which column (from 0 to 2)?'
+  puts '0 = left column, 2 = right column'
+  column_input = gets.chomp
+  game.board.add_piece(current_player.piece, row_input.to_i, column_input.to_i)
+  game.check_board(current_player)
+end
