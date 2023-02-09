@@ -31,6 +31,8 @@ class Board
   attr_accessor :board_space
 
   def initialize
+    # Remember:  Array.new(3, Array.new(3)) will have the
+    # indices sharing the same reference!
     @board_space = Array.new(3) { Array.new(3, ' ') }
   end
 
@@ -48,7 +50,9 @@ class Board
 
   # call after player finishes their move
   def check_board(player)
-    if matching_row?(player.piece) || matching_column?(player.piece) || matching_diagonal?(player.piece)
+    if matching_row?(player.piece) ||
+       matching_column?(player.piece) ||
+       matching_diagonal?(player.piece)
       # announce victory for player 1 or 2
       announce_victory(player)
     elsif board_full?
@@ -56,6 +60,7 @@ class Board
       announce_draw
     else
       # continue game
+      puts "#{player.name} has ended their turn."
     end
   end
 
@@ -161,7 +166,7 @@ player_one = Player.new('Player 1', 'x')
 player_two = Player.new('Player 2', 'o')
 b.add_piece(player_one.piece, 0, 0)
 b.print_board
-b.add_piece(player_one.piece, 0, 0)
+b.add_piece(player_one.piece, 0, 0) # try to add piece to filled spot
 b.add_piece(player_two.piece, 1, 0)
 b.add_piece(player_one.piece, 2, 0)
 b.add_piece(player_one.piece, 0, 1)
