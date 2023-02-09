@@ -166,16 +166,6 @@ class Game
     @board.print_board
   end
 
-  def announce_victory(player)
-    puts '""""""""""""""""""""""'
-    puts "\"\"\"\"#{player.name} wins!\"\"\"\""
-    puts '""""""""""""""""""""""'
-  end
-
-  def announce_draw
-    puts "There's no more space! It's a draw!"
-  end
-
   def get_index_input(string)
     puts "Which #{string} (from 0 to 2)?"
     case string
@@ -196,6 +186,18 @@ class Game
     puts 'Input accepted!'
     puts
     index_input.to_i
+  end
+
+  private
+
+  def announce_victory(player)
+    puts '""""""""""""""""""""""'
+    puts "\"\"\"\"#{player.name} wins!\"\"\"\""
+    puts '""""""""""""""""""""""'
+  end
+
+  def announce_draw
+    puts "There's no more space! It's a draw!"
   end
 end
 
