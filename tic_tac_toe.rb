@@ -176,34 +176,26 @@ class Game
     puts "There's no more space! It's a draw!"
   end
 
-  def get_row_input
-    puts 'Which row (from 0 to 2)?'
-    puts '0 = top row, 2 = bottom row'
-    row_input = gets.chomp
-    until %w[0 1 2].include?(row_input)
+  def get_index_input(string)
+    puts "Which #{string} (from 0 to 2)?"
+    case string
+    when 'row'
+      puts "0 = top #{string}, 2 = bottom #{string}"
+    when 'column'
+      puts "0 = left #{string}, 2 = right #{string}"
+    else
+      'YOU SHOULD NOT HAVE GOTTEN THIS'
+    end
+    index_input = gets.chomp
+    until %w[0 1 2].include?(index_input)
       puts "That's not a valid input!"
       puts
-      puts 'Which row (from 0 to 2)?'
-      row_input = gets.chomp
+      puts "Which #{string} (from 0 to 2)?"
+      index_input = gets.chomp
     end
     puts 'Input accepted!'
     puts
-    row_input.to_i
-  end
-
-  def get_column_input
-    puts 'Which column (from 0 to 2)?'
-    puts '0 = left column, 2 = right column'
-    row_input = gets.chomp
-    until %w[0 1 2].include?(row_input)
-      puts "That's not a valid input!"
-      puts
-      puts 'Which column (from 0 to 2)?'
-      row_input = gets.chomp
-    end
-    puts 'Input accepted!'
-    puts
-    row_input.to_i
+    index_input.to_i
   end
 end
 
@@ -216,8 +208,8 @@ until game.game_ended
   current_player = is_player_ones_turn ? player_one : player_two
   is_player_ones_turn = !is_player_ones_turn
   puts "It's #{current_player.name}'s turn!"
-  row_index = game.get_row_input
-  column_index = game.get_column_input
+  row_index = game.get_index_input('row')
+  column_index = game.get_index_input('column')
   game.board.add_piece(current_player.piece, row_index, column_index)
   game.check_board(current_player)
 end
