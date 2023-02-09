@@ -72,13 +72,19 @@ class Board
 
   def matching_row?(piece)
     # check top row
-    if @board_space[0][0] == piece.symbol && @board_space[0][1] == piece.symbol && @board_space[0][2] == piece.symbol
+    if @board_space[0][0] == piece.symbol &&
+       @board_space[0][1] == piece.symbol &&
+       @board_space[0][2] == piece.symbol
       return true
     # check middle row
-    elsif @board_space[1][0] == piece.symbol && @board_space[1][1] == piece.symbol && @board_space[1][2] == piece.symbol
+    elsif @board_space[1][0] == piece.symbol &&
+          @board_space[1][1] == piece.symbol &&
+          @board_space[1][2] == piece.symbol
       return true
     # check bottom row
-    elsif @board_space[2][0] == piece.symbol && @board_space[2][1] == piece.symbol && @board_space[2][2] == piece.symbol
+    elsif @board_space[2][0] == piece.symbol &&
+          @board_space[2][1] == piece.symbol &&
+          @board_space[2][2] == piece.symbol
       return true
     end
 
@@ -87,13 +93,19 @@ class Board
 
   def matching_column?(piece)
     # check left column
-    if @board_space[0][0] == piece.symbol && @board_space[1][0] == piece.symbol && @board_space[2][0] == piece.symbol
+    if @board_space[0][0] == piece.symbol &&
+       @board_space[1][0] == piece.symbol &&
+       @board_space[2][0] == piece.symbol
       return true
     # check middle column
-    elsif @board_space[0][1] == piece.symbol && @board_space[1][1] == piece.symbol && @board_space[2][1] == piece.symbol
+    elsif @board_space[0][1] == piece.symbol &&
+          @board_space[1][1] == piece.symbol &&
+          @board_space[2][1] == piece.symbol
       return true
     # check right column
-    elsif @board_space[0][2] == piece.symbol && @board_space[1][2] == piece.symbol && @board_space[2][2] == piece.symbol
+    elsif @board_space[0][2] == piece.symbol &&
+          @board_space[1][2] == piece.symbol &&
+          @board_space[2][2] == piece.symbol
       return true
     end
 
@@ -102,10 +114,14 @@ class Board
 
   def matching_diagonal?(piece)
     # check top left-to-bottom right diagonal
-    if @board_space[0][0] == piece.symbol && @board_space[1][1] == piece.symbol && @board_space[2][2] == piece.symbol
+    if @board_space[0][0] == piece.symbol &&
+       @board_space[1][1] == piece.symbol &&
+       @board_space[2][2] == piece.symbol
       return true
     # check top right-to-bottom left diagonal
-    elsif @board_space[0][2] == piece.symbol && @board_space[1][1] == piece.symbol && @board_space[2][0] == piece.symbol
+    elsif @board_space[0][2] == piece.symbol &&
+          @board_space[1][1] == piece.symbol &&
+          @board_space[2][0] == piece.symbol
       return true
     end
     
@@ -165,6 +181,7 @@ b.print_board
 player_one = Player.new('Player 1', 'x')
 player_two = Player.new('Player 2', 'o')
 b.add_piece(player_one.piece, 0, 0)
+b.check_board(player_one)
 b.print_board
 b.add_piece(player_one.piece, 0, 0) # try to add piece to filled spot
 b.add_piece(player_two.piece, 1, 0)
