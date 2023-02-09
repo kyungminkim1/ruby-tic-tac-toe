@@ -45,6 +45,7 @@ class Board
   end
 
   def print_board
+    puts
     @board_space.map { |row| puts row.to_s }
   end
 
@@ -135,9 +136,9 @@ end
 class Player
   attr_reader :name, :piece
 
-  def initialize(name, piece_symbol)
+  def initialize(name, piece)
     @name = name
-    @piece = Piece.new(piece_symbol)
+    @piece = piece
   end
 
 end
@@ -160,25 +161,37 @@ class Game
       announce_draw
     else
       # continue game
-      @board.print_board
       puts "#{player.name} has ended their turn."
     end
+    @board.print_board
   end
 
   def announce_victory(player)
     puts '""""""""""""""""""""""'
     puts "\"\"\"\"#{player.name} wins!\"\"\"\""
     puts '""""""""""""""""""""""'
-    @board.print_board
   end
 
   def announce_draw
     puts "There's no more space! It's a draw!"
   end
+
+  def get_row_input
+    puts 'Which row (from 0 to 2)?'
+    puts '0 = top row, 2 = bottom row'
+    row_input = gets.chomp
+    until %w[0 1 2].include?(row_input)
+      puts "That's not a valid input!"
+      puts 'Which row (from 0 to 2)?'
+      row_input = gets.chomp
+    end
+    puts 'Input accepted!'
+    row_input.to_i
+  end
 end
 
-player_one = Player.new('Player 1', 'x')
-player_two = Player.new('Player 2', 'o')
+player_one = Player.new('Player 1', Piece.new('x'))
+player_two = Player.new('Player 2', Piece.new('o'))
 game = Game.new(Board.new)
 is_player_ones_turn = true
 
@@ -186,12 +199,10 @@ until game.game_ended
   current_player = is_player_ones_turn ? player_one : player_two
   is_player_ones_turn = !is_player_ones_turn
   puts "It's #{current_player.name}'s turn!"
-  puts 'Which row (from 0 to 2)?'
-  puts '0 = top row, 2 = bottom row'
-  row_input = gets.chomp
+  row_index = game.get_row_input
   puts 'Which column (from 0 to 2)?'
   puts '0 = left column, 2 = right column'
   column_input = gets.chomp
-  game.board.add_piece(current_player.piece, row_input.to_i, column_input.to_i)
+  game.board.add_piece(current_player.piece, row_index, column_input)
   game.check_board(current_player)
 end
