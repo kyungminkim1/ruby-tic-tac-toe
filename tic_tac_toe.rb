@@ -182,10 +182,27 @@ class Game
     row_input = gets.chomp
     until %w[0 1 2].include?(row_input)
       puts "That's not a valid input!"
+      puts
       puts 'Which row (from 0 to 2)?'
       row_input = gets.chomp
     end
     puts 'Input accepted!'
+    puts
+    row_input.to_i
+  end
+
+  def get_column_input
+    puts 'Which column (from 0 to 2)?'
+    puts '0 = left column, 2 = right column'
+    row_input = gets.chomp
+    until %w[0 1 2].include?(row_input)
+      puts "That's not a valid input!"
+      puts
+      puts 'Which column (from 0 to 2)?'
+      row_input = gets.chomp
+    end
+    puts 'Input accepted!'
+    puts
     row_input.to_i
   end
 end
@@ -200,9 +217,7 @@ until game.game_ended
   is_player_ones_turn = !is_player_ones_turn
   puts "It's #{current_player.name}'s turn!"
   row_index = game.get_row_input
-  puts 'Which column (from 0 to 2)?'
-  puts '0 = left column, 2 = right column'
-  column_input = gets.chomp
-  game.board.add_piece(current_player.piece, row_index, column_input)
+  column_index = game.get_column_input
+  game.board.add_piece(current_player.piece, row_index, column_index)
   game.check_board(current_player)
 end
